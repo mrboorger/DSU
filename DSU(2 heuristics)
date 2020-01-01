@@ -1,0 +1,23 @@
+struct DSU
+{
+    int boss[maxn];
+    int rnk[maxn];
+    int get(int v)
+    {
+        if (v == boss[v]) return v;
+        return boss[v] = get(boss[v]);
+    }
+
+    void unite(int a, int b)
+    {
+        a = get(a);
+        b = get(b);
+        if (a != b)
+        {
+            if (rnk[a] < rnk[b]) swap (a, b);
+            rnk[a] += rnk[b];
+            boss[b] = a;
+        }
+        return;
+    }
+};
